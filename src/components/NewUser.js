@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 export default class NewUser extends Component {
 
@@ -12,34 +13,34 @@ export default class NewUser extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            name: '',
-            city: '',
-            phone: '',
-            address: ''
+            user_name: '',
+            user_city: '',
+            user_phone: '',
+            user_address: ''
         }
     }
 
     onChangeName(e) {
         this.setState({
-            name: e.target.value
+            user_name: e.target.value
         });
     }
 
     onChangeCity(e) {
         this.setState({
-            city: e.target.value
+            user_city: e.target.value
         });
     }
 
     onChangePhone(e) {
         this.setState({
-            phone: e.target.value
+            user_phone: e.target.value
         });
     }
 
     onChangeAddress(e) {
         this.setState({
-            address: e.target.value
+            user_address: e.target.value
         });
     }
 
@@ -47,16 +48,28 @@ export default class NewUser extends Component {
         e.preventDefault();
 
         console.log(`Form submitted:`);
-        console.log(`Name: ${this.state.name}`);
-        console.log(`City: ${this.state.city}`);
-        console.log(`Phone: ${this.state.phone}`);
-        console.log(`Address: ${this.state.address}`);
+        console.log(`Name: ${this.state.user_name}`);
+        console.log(`City: ${this.state.user_city}`);
+        console.log(`Phone: ${this.state.user_phone}`);
+        console.log(`Address: ${this.state.user_address}`);
+
+        const newUser={
+           user_name:this.state.user_name,
+           user_city: this.state.user_city,
+           user_phone: this.state.user_phone,
+           user_address:this.state.user_address
+
+
+        }
+        
+        axios.post('https://stoic-ritchie-1a1905.netlify.app/.netlify/functions/server/rsdb/users/add',newUser)
+        .then(res => console.log(res.data));
 
         this.setState({
-            name: '',
-            city: '',
-            phone: '',
-            address: ''
+            user_name: '',
+            user_city: '',
+            user_phone: '',
+            user_address: ''
         })
     }
 
@@ -72,7 +85,7 @@ export default class NewUser extends Component {
                         <label>Name: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.name}
+                                value={this.state.user_name}
                                 onChange={this.onChangeName}
                                 />
                     </div>
@@ -80,7 +93,7 @@ export default class NewUser extends Component {
                         <label>City: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.city}
+                                value={this.state.user_city}
                                 onChange={this.onChangeCity}
                                 />
                     </div>
@@ -88,7 +101,7 @@ export default class NewUser extends Component {
                         <label>Phone: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.phone}
+                                value={this.state.user_phone}
                                 onChange={this.onChangePhone}
                                 />
                     </div>
@@ -96,7 +109,7 @@ export default class NewUser extends Component {
                         <label>Address: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.address}
+                                value={this.state.user_address}
                                 onChange={this.onChangeAddress}
                                 />
                     </div>                                           
