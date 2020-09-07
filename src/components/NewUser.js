@@ -52,7 +52,7 @@ export default class NewUser extends Component {
         console.log(`City: ${this.state.user_city}`);
         console.log(`Phone: ${this.state.user_phone}`);
         console.log(`Address: ${this.state.user_address}`);
-
+        //Added a comment
         const newUser={
            user_name:this.state.user_name,
            user_city: this.state.user_city,
