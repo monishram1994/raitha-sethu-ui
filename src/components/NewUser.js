@@ -62,9 +62,12 @@ export default class NewUser extends Component {
 
         }
         
-        axios.post('https://stoic-ritchie-1a1905.netlify.app/.netlify/functions/server/rsdb/users/add',newUser)
-        .then(res => console.log(res.data));
-
+        axios.post('https://stoic-ritchie-1a1905.netlify.app/.netlify/functions/server/rsdb/users/add', newUser)
+        .then((res) => {
+            console.log(res.data)
+        }).catch((error) => {
+            console.log(error)
+        });
         this.setState({
             user_name: '',
             user_city: '',
